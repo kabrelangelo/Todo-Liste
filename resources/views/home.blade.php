@@ -17,16 +17,12 @@
                 <!-- Liste des tâches en cours -->
                 <h1>Tâches en cours</h1>
                 <ul class="list-group mt-3">
-                    @foreach ($todos as $todo)
-                        <li
-                            class="list-group-item d-flex justify-content-between align-items-center @if ($todo->termine) text-muted @endif">
+                    @foreach ($todos->where('fin', 0) as $todo)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>{{ $todo->texte }}</span>
                             <!-- Actions pour Terminer et supprimer -->
                             <div class="actions">
-                                @if (!$todo->termine)
-                                    <a href="{{ route('todo.done', ['id' => $todo->id]) }}"
-                                        class="btn btn-primary">Terminer</a>
-                                @endif
+                                <a href="{{ route('todo.done', ['id' => $todo->id]) }}" class="btn btn-primary">Terminer</a>
                                 <a href="{{ route('todo.delete', ['id' => $todo->id]) }}"
                                     class="btn btn-danger">Supprimer</a>
                             </div>
@@ -34,7 +30,7 @@
                     @endforeach
                 </ul>
                 <!-- Liste des tâches terminées -->
-                @if ($todos->where('fin', 0)->count())
+                @if ($todos->where('fin', 1)->count())
                     <h1>Tâches terminées</h1>
                     <ul class="list-group mt-3">
                         @foreach ($todos->where('fin', 1) as $todo)
