@@ -16,19 +16,20 @@
                 </form>
                 <!-- Liste -->
                 <ul class="list-group mt-3">
-                    @forelse ($todos as $todo)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{{ $todo->texte }}</span>
-                            <!-- Actions pour Terminer et supprimer -->
-                            <div class="actions">
-                                <a href="{{ route('todo.done', ['id' => $todo->id]) }}" class="btn btn-primary">Terminer</a>
-                                <a href="{{ route('todo.delete', ['id' => $todo->id]) }}"
-                                    class="btn btn-danger">Supprimer</a>
-                            </div>
-                        </li>
-                    @empty
-                        <li class="list-group-item text-center">C'est vide !</li>
-                    @endforelse
+                    @foreach ($todos as $todo)
+                        @if (!$todo->fin)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ $todo->texte }}</span>
+                                <!-- Actions pour Terminer et supprimer -->
+                                <div class="actions">
+                                    <a href="{{ route('todo.done', ['id' => $todo->id]) }}"
+                                        class="btn btn-primary">Terminer</a>
+                                    <a href="{{ route('todo.delete', ['id' => $todo->id]) }}"
+                                        class="btn btn-danger">Supprimer</a>
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>

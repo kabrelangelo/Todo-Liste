@@ -19,3 +19,4 @@ Route::get('/', [TodosController::class, "liste"])->name("todo.list");
 Route::post('/action/add', [TodosController::class, "saveTodo"])->name('todo.save');
 Route::get('/action/done/{id}', [TodosController::class, "markAsDone"])->name('todo.done');
 Route::get('/action/delete/{id}', [TodosController::class, "deleteTodo"])->name('todo.delete');
+Route::get('/todo/completed', [TodoController::class, 'showCompleted'])->name('todo.completed');

@@ -39,4 +39,10 @@ class TodosController extends Controller
 
         return redirect("/");
     }
+
+    public function showCompleted()
+    {
+        $todos = Todos::where('termine', true)->get();
+        return view('todo.completed', compact('todos'));
+    }
 }
