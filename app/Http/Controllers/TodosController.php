@@ -17,20 +17,19 @@ class TodosController extends Controller
     {
         $todo = new Todos;
         $todo->texte = $request->texte;
-        $todo->fin = 1; // Fournir une valeur pour le champ fin
+        $todo->fin = 0; // Fournir une valeur pour le champ fin
         $todo->save();
         return redirect()->back();
     }
     public function markAsDone($id)
     {
-        $todo  = Todos::find($id);
+        $todo = Todos::find($id);
         if ($todo) {
-            $todo->fin = 1;
+            $todo->fin = !$todo->fin;
             $todo->save();
         }
         return redirect("/");
     }
-
     public function deleteTodo($id)
     {
         $todo  = Todos::find($id);
