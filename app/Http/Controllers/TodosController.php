@@ -11,4 +11,33 @@ class TodosController extends Controller
     {
         return view("home", ["todos" => Todos::all()]);
     }
+
+
+    public function saveTodo(Request $request)
+    {
+        $todo = new Todos;
+        $todo->texte = $request->texte;
+        $todo->fin = 1; // Fournir une valeur pour le champ fin
+        $todo->save();
+        return redirect()->back();
+    }
+    public function markAsDone($id)
+    {
+        $todo  = Todos::find($id);
+        if ($todo) {
+            $todo->fin = 1;
+            $todo->save();
+        }
+        return redirect("/");
+    }
+
+    public function deleteTodo($id)
+    {
+        $todo  = Todos::find($id);
+        if ($todo) {
+            $todo->delete();
+        }
+
+        return redirect("/");
+    }
 }
