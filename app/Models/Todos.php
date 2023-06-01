@@ -10,4 +10,8 @@ class Todos extends Model
     use HasFactory;
 
     protected $fillable = ['texte', 'fin'];
+    public function fini()
+    {
+        return $this->fin;
+    }
 }

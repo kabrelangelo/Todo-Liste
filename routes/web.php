@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TodosController::class, "liste"])->name("todo.list");
+Route::get('/', [TodosController::class, "index"])->name("todo.index");
 Route::post('/action/add', [TodosController::class, "saveTodo"])->name('todo.save');
 Route::get('/action/done/{id}', [TodosController::class, "markAsDone"])->name('todo.done');
 Route::get('/action/delete/{id}', [TodosController::class, "deleteTodo"])->name('todo.delete');

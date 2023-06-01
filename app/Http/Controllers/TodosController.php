@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TodosController extends Controller
 {
-    public function liste()
+    public function index()
     {
         return view("home", ["todos" => Todos::all()]);
     }
@@ -45,4 +45,9 @@ class TodosController extends Controller
         $todos = Todos::where('termine', true)->get();
         return view('todo.completed', compact('todos'));
     }
+    // public function index()
+    // {
+    //     $todo = Todos::all();
+    //     return view('todo.index', ['todo' => $todo]);
+    // }
 }
