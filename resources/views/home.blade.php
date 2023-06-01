@@ -29,21 +29,20 @@
                         </li>
                     @endforeach
                 </ul>
-                <!-- Liste des tâches terminées -->
-                @if ($todos->where('fin', 1)->count())
-                    <h1>Tâches terminées</h1>
-                    <ul class="list-group mt-3">
-                        @foreach ($todos->where('fin', 1) as $todo)
-                            <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
-                                <span>{{ $todo->texte }}</span>
-                                <!-- Action pour supprimer -->
-                                <div class="actions">
-                                    <a href="{{ route('todo.delete', ['id' => $todo->id]) }}"
-                                        class="btn btn-danger">Supprimer</a>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                <!-- Liste des tâches terminées ->
+                    @if ($todos->where('fin', 1)->count())
+                        <h1>Tâches terminées</h1>
+                        <ul class="list-group mt-3">
+                            @foreach ($todos->where('fin', 1) as $todo)
+    <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+                                    <span>{{ $todo->texte }}</span>
+                                    <!-- Action pour supprimer -->
+                <div class="actions">
+                    <a href="{{ route('todo.delete', ['id' => $todo->id]) }}" class="btn btn-danger">Supprimer</a>
+                </div>
+                </li>
+                @endforeach
+                </ul>
                 @endif
             </div>
         </div>
